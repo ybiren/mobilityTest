@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="grid" *ngIf="!endGameMessage">
+      <div class="square"
+        *ngFor="let square of board; let pos = index"
+        (click)="doMove(pos)"
+        [ngClass]="{'o-square':square==='O'}">
+        {{square}}
+      </div>
+    </div>
+    <div class='end-game' *ngIf="endGameMessage">{{endGameMessage}}
+     <div (click)="initGame()">Play another?</div>
+    </div>
+</div>
