@@ -12,7 +12,7 @@ export class TicTacToeComponent implements OnInit {
   private readonly EMPTY_SQUARE = ' ';
   private readonly X_SQUARE = 'X';
   private readonly O_SQUARE = 'O';
-  private isXTurn = true; // X player always starts the game
+  private isXTurn: boolean;
   private isBoardDisabled = false;
 
   public board: string[] = []; // Game board
@@ -28,7 +28,7 @@ export class TicTacToeComponent implements OnInit {
   public initGame() {
     this.board = [];
     this.endGameMessage = '';
-    this.isXTurn = true;
+    this.isXTurn = true; // X player always starts the game
     this.isBoardDisabled = false;
     for (let squareInd = 0; squareInd < this.NUM_SQUARES; squareInd++) {
       this.board.push(this.EMPTY_SQUARE);
