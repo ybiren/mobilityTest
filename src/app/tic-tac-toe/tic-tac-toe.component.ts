@@ -9,11 +9,11 @@ export class TicTacToeComponent implements OnInit {
 
 
   private readonly NUM_SQUARES = 9;
+  private readonly EMPTY_SQUARE = ' ';
+  private readonly X_SQUARE = 'X';
+  private readonly O_SQUARE = 'O';
   private isXTurn = true; // X player always starts the game
-
-  private EMPTY_SQUARE = ' ';
-  private X_SQUARE = 'X';
-  private O_SQUARE = 'O';
+  private isBoardDisabled = false;
 
   public board: string[] = []; // Game board
   public endGameMessage = '';
@@ -28,6 +28,8 @@ export class TicTacToeComponent implements OnInit {
   public initGame() {
     this.board = [];
     this.endGameMessage = '';
+    this.isXTurn = true;
+    this.isBoardDisabled = false;
     for (let squareInd = 0; squareInd < this.NUM_SQUARES; squareInd++) {
       this.board.push(this.EMPTY_SQUARE);
     }
@@ -36,17 +38,20 @@ export class TicTacToeComponent implements OnInit {
   // Conquest square by current player and check if there is winner or draw
   public doMove(pos: number) {
     const currPlayer = this.isXTurn ? this.X_SQUARE : this.O_SQUARE;
-    if (this.board[pos] === this.EMPTY_SQUARE) {
+    if (this.board[pos] === this.EMPTY_SQUARE && !this.isBoardDisabled) {
       this.board[pos] = currPlayer;
       if (this.isWinner()) {
-        this.endGameMessage = `${currPlayer} WON!!!!`;
+        this.isBoardDisabled = true;
+        setTimeout(() => this.endGameMessage = `${currPlayer} WON!!!!`, 500);
       } else if (this.isDraw()) {
-          this.endGameMessage = 'DRAW';
+        this.isBoardDisabled = true;
+        setTimeout(() => this.endGameMessage = 'DRAW', 500);
       }
       this.isXTurn = !this.isXTurn;
     }
   }
 
+  // Check rows,columns,diagonals
   private isWinner() {
     return this.isDiagonalWin() || this.isColumnWinner() || this.isRowWinner();
   }

@@ -3,7 +3,7 @@
       <div class="square"
         *ngFor="let square of board; let pos = index"
         (click)="doMove(pos)"
-        [ngClass]="{'o-square':square === O_SQUARE}">
+        [ngClass]="{'o-square':square === O_SQUARE, 'x-square':square === X_SQUARE}">
         {{square}}
       </div>
     </div>
