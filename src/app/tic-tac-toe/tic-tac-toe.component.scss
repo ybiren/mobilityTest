@@ -23,11 +23,19 @@
     font-size: 10vh;
     height: 33%;
     cursor: pointer;
-    &.x-square {
+    position: relative;
+    .x-square {
       color: $x-player;
     }
-    &.o-square {
+    .o-square {
       color: $o-player;
+    }
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
   .end-game {
